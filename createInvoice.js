@@ -8,22 +8,23 @@ function createInvoice(invoice, path) {
   generateCustomerInformation(doc, invoice);
   generateInvoiceTable(doc, invoice);
   generateFooter(doc);
-
+  generateFooters(doc)
   doc.end();
   doc.pipe(fs.createWriteStream(path));
 }
 
-function generateHeader(doc) {
+function generateHeader(`doc`) {
   doc
-    .image("logo.png", 50, 45, { width: 50 })
+    .image("logo.png", 200, 45, { width: 180})
     .fillColor("#444444")
     .fontSize(20)
-    .text("ACME Inc.", 110, 57)
+    // .text("Maharaja Banquet", 110, 57)
     .fontSize(10)
-    .text("ACME Inc.", 200, 50, { align: "right" })
+    .text("Maharaja Banquet", 200, 50, { align: "right" })
     .text("123 Main Street", 200, 65, { align: "right" })
     .text("New York, NY, 10025", 200, 80, { align: "right" })
     .moveDown();
+    
 }
 
 function generateCustomerInformation(doc, invoice) {
@@ -33,6 +34,7 @@ function generateCustomerInformation(doc, invoice) {
     .text("Invoice", 50, 160);
 
   generateHr(doc, 185);
+  generateHr(doc, 188);
 
   const customerInformationTop = 200;
 
@@ -67,6 +69,8 @@ function generateCustomerInformation(doc, invoice) {
     .moveDown();
 
   generateHr(doc, 252);
+  generateHr(doc, 255);
+
 }
 
 function generateInvoiceTable(doc, invoice) {
@@ -84,6 +88,7 @@ function generateInvoiceTable(doc, invoice) {
     "Line Total"
   );
   generateHr(doc, invoiceTableTop + 20);
+  
   doc.font("Helvetica");
 
   for (i = 0; i < invoice.items.length; i++) {
@@ -100,6 +105,7 @@ function generateInvoiceTable(doc, invoice) {
     );
 
     generateHr(doc, position + 20);
+    
   }
 
   const subtotalPosition = invoiceTableTop + (i + 1) * 30;
@@ -124,6 +130,8 @@ function generateInvoiceTable(doc, invoice) {
     formatCurrency(invoice.paid)
   );
 
+  
+
   const duePosition = paidToDatePosition + 25;
   doc.font("Helvetica-Bold");
   generateTableRow(
@@ -138,6 +146,8 @@ function generateInvoiceTable(doc, invoice) {
   doc.font("Helvetica");
 }
 
+
+
 function generateFooter(doc) {
   doc
     .fontSize(10)
@@ -148,6 +158,21 @@ function generateFooter(doc) {
       { align: "center", width: 500 }
     );
 }
+
+function generateFooters(doc) {
+  doc
+    .fontSize(10)
+    .text(
+      `Facilities We Provide:\n 
+      1. Marriage Hall\n
+      2. Open Lawn
+      `,
+      50,
+      550,
+      { align: "left", width: 500 }
+    );
+}
+
 
 function generateTableRow(
   doc,
@@ -176,8 +201,9 @@ function generateHr(doc, y) {
     .stroke();
 }
 
+
 function formatCurrency(cents) {
-  return "$" + (cents / 100).toFixed(2);
+  return "Rs." + (cents / 100).toFixed(2);
 }
 
 function formatDate(date) {

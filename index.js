@@ -2,25 +2,25 @@ const { createInvoice } = require("./createInvoice.js");
 
 const invoice = {
   shipping: {
-    name: "John Doe",
-    address: "1234 Main Street",
-    city: "San Francisco",
-    state: "CA",
-    country: "US",
-    postal_code: 94111
+    name: "Naresh Kumar",
+    address: "Kaagaz Manidr, Bank Road",
+    city: "Raxaul",
+    state: "Bihar",
+    country: "INDIA",
+    postal_code: 845305
   },
   items: [
     {
-      item: "TC 100",
-      description: "Toner Cartridge",
-      quantity: 2,
+      item: "Marriage & Reception",
+      description: "1 day Booking Of Complete Marriage haqll3",
+      quantity: 1,
       amount: 6000
     },
     {
-      item: "USB_EXT",
-      description: "USB Cable Extender",
+      item: "Dummy Item 2",
+      description: "Dummy Descritption 2",
       quantity: 1,
-      amount: 2000
+      amount: 6000
     }
   ],
   subtotal: 8000,
